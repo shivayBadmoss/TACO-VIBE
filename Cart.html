@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cart.css">
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div id="nav_bar">
+            <div id="nav_bar_content">
+                <a id="logo" href="index.html"><img src="image.png"></a>
+                <a href="Menu.html">MENU</a>
+                <a href="Customization.html">Customize Your Meal</a>
+                <a href="Payment_M.html">Payment Method</a>
+                <a href="Cod.html">COD</a>
+                <a href="OnlinePay.html">Online Pay</a>
+                <a href="contactus.html">Contact</a>
+                <a href="cart.html">CART 🛒</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<h1 class="top_heading">Your Cart</h1>
+
+<div id="cart_container">
+    <div id="cart_items"></div>
+    <h2 id="total_box">Total: ₹<span id="total_price">0</span></h2>
+
+    <button id="checkout_btn" onclick="location.href='Payment_M.html'">
+        Proceed to Checkout
+    </button>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function loadCart() {
+    let cartDiv = document.getElementById("cart_items");
+    let total = 0;
+    cartDiv.innerHTML = "";
+
+    cart.forEach((item, index) => {
+        total += item.price;
+        cartDiv.innerHTML += `
+            <div class="cart_row">
+                <img src="${item.img}">
+                <p><b>${item.name}</b></p>
+                <p>₹${item.price}</p>
+                <button class="remove_btn" onclick="removeItem(${index})">Remove</button>
+            </div>
+        `;
+    });
+
+    document.getElementById("total_price").innerText = total;
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+}
+
+loadCart();
+</script>
+
+</body>
+</html>

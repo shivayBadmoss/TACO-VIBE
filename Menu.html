@@ -3,102 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Page </title>
-           <link rel="stylesheet" href="menu.css">
+    <title>Menu Page</title>
 
+    <!-- MENU PAGE STYLES -->
+    <link rel="stylesheet" href="menu.css">
+
+    <!-- SIMPLE ADD-TO-CART BUTTON STYLES -->
+    <style>
+        .add_to_cart {
+            background-color: rgb(19, 5, 90);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .add_to_cart:hover {
+            background-color: rgb(38, 12, 120);
+        }
+    </style>
 </head>
-<head>
-    <header>
+
+<body>
+
+<!-- ==========================
+     NAVIGATION BAR
+========================== -->
+<header>
     <nav>
         <div id="nav_bar">
-                <div id="nav_bar_content">
-                    <a id="logo" href="index.html"><img src="image.png" alt="Rev's Tacoshop Logo"></a>
-                    <a href="Menu.html">MENU</a>
-                    <a href="Customization.html">Customize Your Meal</a>
-                    <a href="Payment_M.html">Payment Method</a>
-                    <a href="Cod.html">COD</a>
-                    <a href="OnlinePay.html">ONLINE PAY</a>
-                    <a href="contactus.html">CONTACT US</a>
+            <div id="nav_bar_content">
 
-                <!-- <form id="form1" action="action.php" method="get">
-                    <input id="search_bar" type="text" placeholder="Search.......">
-                    <button id="search_button" type="button">Search</button>
-                </form> -->
+                <a id="logo" href="index.html">
+                    <img src="image.png" alt="Rev's Tacoshop Logo">
+                </a>
+
+                <a href="Menu.html">MENU</a>
+                <a href="Customization.html">Customize Your Meal</a>
+
+                <!-- <a href="Payment_M.html">Payment Method</a>
+                <a href="Cod.html">COD</a>
+                <a href="OnlinePay.html">ONLINE PAY</a> -->
+                
+                <a href="contactus.html">CONTACT US</a>
+
+                <!-- NEW CART BUTTON -->
+                <a href="cart.html">CART 🛒</a>
+
             </div>
         </div>
     </nav>
 </header>
-</head>
-<body>
-    <section id="menu_items">
+
+
+<!-- ==========================
+     MENU ITEMS
+========================== -->
+<section id="menu_items">
     <div class="menu_grid">
 
+        <!-- 1 -->
         <div class="menu_card">
             <img src="taco1.jpg" alt="Classic Beef Taco">
             <h3>Classic Beef Taco</h3>
-            <p>Our #1 favorite! Fresh shell filled with juicy beef, cheese & crunchy lettuce.</p>
+            <p>Fresh shell filled with juicy beef, cheese & crunchy lettuce.</p>
             <span>₹99</span>
+
+            <button class="add_to_cart"
+                data-name="Classic Beef Taco"
+                data-price="99"
+                data-img="taco1.jpg">
+                🛒 Add to Cart
+            </button>
         </div>
 
+        <!-- 2 -->
         <div class="menu_card">
             <img src="taco2.jpg" alt="Chicken Taco">
             <h3>Grilled Chicken Taco</h3>
-            <p>Marinated tender chicken grilled to perfection, topped with our secret sauce!</p>
+            <p>Marinated chicken grilled to perfection, topped with our secret sauce!</p>
             <span>₹119</span>
+
+            <button class="add_to_cart"
+                data-name="Grilled Chicken Taco"
+                data-price="119"
+                data-img="taco2.jpg">
+                🛒 Add to Cart
+            </button>
         </div>
 
+        <!-- 3 -->
         <div class="menu_card">
             <img src="taco3.jpg" alt="Veggie Taco">
             <h3>Garden Veggie Taco</h3>
             <p>A fresh & filling mix of crunchy veggies — perfect for veggie lovers!</p>
             <span>₹89</span>
+
+            <button class="add_to_cart"
+                data-name="Garden Veggie Taco"
+                data-price="89"
+                data-img="taco3.jpg">
+                🛒 Add to Cart
+            </button>
         </div>
 
+        <!-- 4 -->
         <div class="menu_card">
             <img src="taco4.jpg" alt="Spicy Salsa Taco">
             <h3>Fire Salsa Taco 🌶</h3>
             <p>Turn up the heat! Packed with bold flavors and spicy handmade salsa.</p>
             <span>₹109</span>
+
+            <button class="add_to_cart"
+                data-name="Fire Salsa Taco"
+                data-price="109"
+                data-img="taco4.jpg">
+                🛒 Add to Cart
+            </button>
         </div>
 
+        <!-- 5 -->
         <div class="menu_card">
             <img src="taco5.jpg" alt="Cheese Blast Taco">
             <h3>Cheese Blast Taco 🧀</h3>
             <p>Loaded with creamy cheese — every bite melts in your mouth!</p>
             <span>₹129</span>
+
+            <button class="add_to_cart"
+                data-name="Cheese Blast Taco"
+                data-price="129"
+                data-img="taco5.jpg">
+                🛒 Add to Cart
+            </button>
         </div>
 
+        <!-- 6 -->
         <div class="menu_card">
             <img src="taco6.jpg" alt="Paneer Taco">
             <h3>Paneer Mexicano</h3>
             <p>Soft paneer chunks tossed in Mexican spices — a fusion favorite!</p>
             <span>₹139</span>
+
+            <button class="add_to_cart"
+                data-name="Paneer Mexicano"
+                data-price="139"
+                data-img="taco6.jpg">
+                🛒 Add to Cart
+            </button>
         </div>
 
+        <!-- 7 -->
         <div class="menu_card">
             <img src="taco7.jpg" alt="BBQ Taco">
             <h3>BBQ Smokehouse</h3>
-            <p>Slow-cooked BBQ flavors with a smoky twist — simply irresistible!</p>
+            <p>Slow-cooked BBQ flavors with a smoky twist — irresistible!</p>
             <span>₹149</span>
+
+            <button class="add_to_cart"
+                data-name="BBQ Smokehouse"
+                data-price="149"
+                data-img="taco7.jpg">
+                🛒 Add to Cart
+            </button>
         </div>
 
+        <!-- 8 -->
         <div class="menu_card">
             <img src="taco8.jpg" alt="Premium Taco">
             <h3>El Supremo 🌮✨</h3>
-            <p>Premium fillings + chef's special sauce. Treat yourself like royalty!</p>
+            <p>Premium fillings + chef's special sauce. A royal treat!</p>
             <span>₹179</span>
+
+            <button class="add_to_cart"
+                data-name="El Supremo"
+                data-price="179"
+                data-img="taco8.jpg">
+                🛒 Add to Cart
+            </button>
         </div>
 
     </div>
 </section>
-<!-- =========================
-     CUSTOMER MEAL SELECTION
-========================= -->
+
+
+<!-- ==========================
+     MEAL SELECTION SECTION
+========================== -->
 <section id="meal_selection">
+
     <h2 class="meal_heading">Choose Your Favorite Meal</h2>
-    <form id="meal_form" action="#" method="post">
-        <label for="meal_list"><b>Select a Taco:</b></label><br><br>
-        <select id="meal_list" name="meal_list">
+
+    <form id="meal_form">
+
+        <label><b>Select a Taco:</b></label><br><br>
+
+        <select id="meal_list">
             <option value="">-- Select Your Taco --</option>
             <option value="beef_taco">Classic Beef Taco</option>
             <option value="chicken_taco">Grilled Chicken Taco</option>
@@ -109,26 +211,29 @@
             <option value="bbq_taco">BBQ Smokehouse</option>
             <option value="supreme_taco">El Supremo 🌮✨</option>
         </select>
+
         <br><br>
 
-       <!-- Horizontal button to go to Confirmation Page -->
-        <button id="confirm_button" type="button" onclick="window.location.href='Payment_M.html'">
+        <button id="confirm_button" type="button" onclick="location.href='Payment_M.html'">
             Select Your Payment Method and Pay
         </button>
 
         <br><br><hr><br>
 
-         <!-- Button to go to Order Page -->
-        <button id="order_button" type="button" onclick="window.location.href='Customization.html'">
-            Custmize Your Meal
+        <button id="order_button" type="button" onclick="location.href='Customization.html'">
+            Customize Your Meal
         </button>
 
-       
     </form>
 </section>
 
+
+<!-- ==========================
+           FOOTER
+========================== -->
 <footer>
     <section id="footer">
+
         <div id="links">
             <a href="#">OUR FOOD</a>
             <a href="#">FIND US</a>
@@ -146,10 +251,37 @@
                 <h6>©2025 Rev's Taco Shop IP Holder, LLC. All Rights Reserved.</h6>
             </div>
         </div>
+
     </section>
 </footer>
 
-</body>
-</html>
+
+<!-- ==========================
+     CART SYSTEM SCRIPT
+========================== -->
+<script>
+// Load saved cart or create empty cart
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Add event to each Add-to-Cart button
+document.querySelectorAll(".add_to_cart").forEach(btn => {
+
+    btn.addEventListener("click", function () {
+
+        let item = {
+            name: this.dataset.name,
+            price: parseInt(this.dataset.price),
+            img: this.dataset.img
+        };
+
+        cart.push(item);
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert(item.name + " added to cart!");
+    });
+});
+</script>
+
 </body>
 </html>
