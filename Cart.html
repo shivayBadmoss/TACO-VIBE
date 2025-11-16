@@ -29,7 +29,7 @@
                 <a href="contactus.html">CONTACT</a>
 
                 <!-- Active Cart Link -->
-                <a href="cart.html">CART 🛒</a>
+                <a href="cart.html">CART </a>
             </div>
         </div>
     </nav>
@@ -92,7 +92,7 @@ function loadCart() {
     cartDiv.innerHTML = "";
 
     if (cart.length === 0) {
-        cartDiv.innerHTML = `<h3>Your cart is empty 🛒</h3>`;
+        cartDiv.innerHTML = `<h3>Your cart is empty </h3>`;
         updateTotal();
         return;
     }
@@ -112,7 +112,7 @@ function loadCart() {
                 </div>
 
                 <div class="quantity_box">
-                    <button onclick="decreaseQty(${index})">−</button>
+                    <button onclick="decreaseQty(${index})">-</button>
                     <span>${item.quantity}</span>
                     <button onclick="increaseQty(${index})">+</button>
                 </div>
