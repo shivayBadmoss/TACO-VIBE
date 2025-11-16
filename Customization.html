@@ -3,156 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rev's Tacoshop | Order Page</title>
+    <title>Rev's Tacoshop | Customize Meal</title>
 
-    <!-- Link CSS -->
     <link rel="stylesheet" href="Customization.css">
 </head>
 <body>
-    
-    <!-- 0000000000000000000000000000000000000
-         HEADER & NAVIGATION
-    0000000000000000000000000000000000 -->
-    <header>
-        <nav>
-            <div id="nav_bar">
-                <div id="nav_bar_content">
-                    <a id="logo" href="index.html"><img src="image.png" alt="Rev's Tacoshop Logo"></a>
-                    <a href="Menu.html">MENU</a>
-                    <a href="Customization.html">Customize Your Meal</a>
-                    
-                    <!-- <a href="Payment_M.html">Payment Method</a>
-                    <a href="Cod.html">COD</a>
-                    <a href="OnlinePay.html">ONLINE PAY</a> -->
-                    
-                    <a href="contactus.html">CONTACT US</a>
-                    <a href="cart.html">CART 🛒</a>
 
-
-                    
-                    <!-- <form id="form1" action="action.php" method="get">
-                        <input id="search_bar" type="text" placeholder="Search.......">
-                        <button id="search_button" type="button">Search</button>
-                    </form> -->
-                </div>
+<header>
+    <nav>
+        <div id="nav_bar">
+            <div id="nav_bar_content">
+                <a id="logo" href="index.html"><img src="image.png" alt="Rev's Tacoshop Logo"></a>
+                <a href="Menu.html">MENU</a>
+                <a href="Customization.html">Customize Your Meal</a>
+                <a href="contactus.html">CONTACT US</a>
+                <a href="cart.html">CART 🛒</a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
+<main>
+    <section id="order_section">
 
-    <!-- 0000000000000000000000000000000000000000000000000000000000
-         MAIN ORDER SECTION
-    000000000000000000000000000000000000000000000 -->
-    <main>
-        <section id="order_section">
-            <h1><u>Your Subway is Just Few Clicks Away</u></h1>
-            <h2><u>Customize Your Meal Now: Select What You’re Craving</u></h2>
+        <h1><u>Your Subway is Just Few Clicks Away</u></h1>
+        <h2><u>Customize Your Meal</u></h2>
 
-            <form id="order_form" action="https://sheetdb.io/api/v1/ohk632bkkq5s9" method="post">
-                
-                <!-- Meal Choice -->
+        <!-- -------------------------
+             CUSTOMIZATION FORM
+        -------------------------- -->
 
-                <div class="form_group">
-                    <h3>Select Your Meal</h3>
-                    <label><input type="checkbox" name="data[FOOD]" value="Sandwich" > Sandwich</label><br>
-                    <label><input type="checkbox" name="data[FOOD]" value="Burger"> Burger</label>
-                </div>
+        <form id="order_form" action="https://sheetdb.io/api/v1/ohk632bkkq5s9" method="post">
 
-                <!-- Bread Choice -->
-
-                <div class="form_group">
-                    <h3>Select The Type Of Bread You Want</h3>
-                    <label><input type="radio" name="data[bread-type]" value="White Bread"> White Bread</label><br>
-                    <label><input type="radio" name="data[bread-type]" value="Whole Wheat Bread"> Whole Wheat Bread</label><br>
-                    <label><input type="radio" name="data[bread-type]" value="Sourdough Bread"> Sourdough Bread</label>
-                </div>
-
-                <!-- Veggie Choice -->
-
-                <div class="form_group">
-                    <h3>Select Veggies</h3>
-                    <label><input type="checkbox" name="data[veggies]" value="Lettuce"> Lettuce</label><br>
-                    <label><input type="checkbox" name="data[veggies]" value="Tomato"> Tomato</label><br>
-                    <label><input type="checkbox" name="data[veggies]" value="Cucumber"> Cucumber</label><br>
-                    <label><input type="checkbox" name="data[veggies]" value="Peppers"> Peppers</label><br>
-                    <label><input type="checkbox" name="data[veggies]" value="Olives"> Olives</label><br>
-                    <label><input type="checkbox" name="data[veggies]" value="Avocado"> Avocado</label>
-                </div>
-
-                <!-- Extra Description -->
-
-                <div class="form_group">
-                    <h3>Chef's Note</h3>
-                    <textarea name="data[feedback]" id="feedback" placeholder="Enter some description for your meal..." rows="8"></textarea>
-                </div>
-
-                    <!--SCript for desplaying msg -->
-
-                <script>
-                var form = document.getElementById('order_form');
-
-                form.addEventListener("submit", e => {
-                e.preventDefault();
-
-                fetch(form.action, {
-                method: "POST",
-                     body: new FormData(form)
-                 })
-                     .then(response => response.json())
-                 .then(data => {
-                                    alert('Submitted !! 😊 Thank you ');
-                    window.location.href = '';
-                 location.reload();
-                      })
-              .catch(error => {
-                      console.error('Error:', error);
-                  alert('Something went wrong. Please try again!');
-                      });
-                    });
-                </script>
-
-                <!-- Buttons -->
-
-                <div class="form_buttons">
-                    <input type="submit" value="Submit Response">
-                    <input type="reset" value="Reset Form">
-                </div>
-
-            </form>
-
-            <!-- Navigation Buttons -->
-            <div id="order_links">
-                <button onclick="window.location.href='Payment_M.html'">Confirm Your Order</button>
-                <button onclick="window.location.href='index.html'">Go To Main Page</button>
-            </div>
-        </section>
-    </main>
-
-
-    <!-- 00000000000000000000000000000000
-         FOOTER SECTION
-    00000000000000000000000000000000000000000 -->
-    <footer>
-        <section id="footer">
-            <div id="links">
-                <a href="#">OUR FOOD</a>
-                <a href="#">FIND US</a>
-                <a href="#">NEWS</a>
-                <a href="#">WORK WITH US</a>
-                <a href="#">WHAT'S NEW</a>
-                <a href="#">ABOUT US</a>
-                <a href="#">CONTACT US</a>
-                <a href="#">TERMS & CONDITIONS</a>
+            <!-- Meal Type -->
+            <div class="form_group">
+                <h3>Select Your Meal</h3>
+                <label><input type="checkbox" class="meal_type" value="Sandwich"> Sandwich</label><br>
+                <label><input type="checkbox" class="meal_type" value="Burger"> Burger</label>
             </div>
 
-            <div id="copyright">
-                <div id="pic">
-                    <a href="#"><img src="image.png" alt="Footer Logo"></a>
-                    <h6>©2025 Rev's Tacoshop IP Holder, LLC. All Rights Reserved.</h6>
-                </div>
+            <!-- Bread Type -->
+            <div class="form_group">
+                <h3>Select The Type Of Bread</h3>
+                <label><input type="radio" name="bread" value="White Bread"> White Bread</label><br>
+                <label><input type="radio" name="bread" value="Whole Wheat Bread"> Whole Wheat Bread</label><br>
+                <label><input type="radio" name="bread" value="Sourdough Bread"> Sourdough Bread</label>
             </div>
-        </section>
-    </footer>
+
+            <!-- Veggies -->
+            <div class="form_group">
+                <h3>Select Veggies</h3>
+                <label><input type="checkbox" class="veggie" value="Lettuce"> Lettuce</label><br>
+                <label><input type="checkbox" class="veggie" value="Tomato"> Tomato</label><br>
+                <label><input type="checkbox" class="veggie" value="Cucumber"> Cucumber</label><br>
+                <label><input type="checkbox" class="veggie" value="Peppers"> Peppers</label><br>
+                <label><input type="checkbox" class="veggie" value="Olives"> Olives</label><br>
+                <label><input type="checkbox" class="veggie" value="Avocado"> Avocado</label>
+            </div>
+
+            <!-- Note -->
+            <div class="form_group">
+                <h3>Chef's Note</h3>
+                <textarea id="chef_note" placeholder="Enter some description..." rows="8"></textarea>
+            </div>
+
+            <!-- Original SheetDB Submission -->
+            <div class="form_buttons">
+                <input type="submit" value="Submit Response">
+                <input type="reset" value="Reset Form">
+            </div>
+        </form>
+
+        <hr><br>
+
+        <!-- ADD TO CART BUTTON -->
+        <button id="add_to_cart_btn" class="add_to_cart_btn">Add Customized Meal to Cart 🛒</button>
+
+        <div id="order_links">
+            <button onclick="window.location.href='Payment_M.html'">Confirm Your Order</button>
+            <button onclick="window.location.href='index.html'">Go To Main Page</button>
+        </div>
+
+    </section>
+</main>
+
+<footer>
+    <section id="footer">
+        <div id="links">
+            <a href="#">OUR FOOD</a>
+            <a href="#">FIND US</a>
+            <a href="#">NEWS</a>
+            <a href="#">WORK WITH US</a>
+            <a href="#">WHAT'S NEW</a>
+            <a href="#">ABOUT US</a>
+            <a href="#">CONTACT US</a>
+            <a href="#">TERMS & CONDITIONS</a>
+        </div>
+
+        <div id="copyright">
+            <div id="pic">
+                <a href="#"><img src="image.png" alt="Footer Logo"></a>
+                <h6>©2025 Rev's Tacoshop — All Rights Reserved.</h6>
+            </div>
+        </div>
+    </section>
+</footer>
+
+<!-- ==========================
+     ADD TO CART SCRIPT
+=========================== -->
+<script>
+document.getElementById("add_to_cart_btn").addEventListener("click", function () {
+
+    let mealTypes = Array.from(document.querySelectorAll(".meal_type:checked")).map(i => i.value);
+    let bread = document.querySelector("input[name='bread']:checked");
+    let veggies = Array.from(document.querySelectorAll(".veggie:checked")).map(i => i.value);
+    let note = document.getElementById("chef_note").value;
+
+    // VALIDATION
+    if (mealTypes.length === 0) {
+        alert("Please select at least one meal type.");
+        return;
+    }
+    if (!bread) {
+        alert("Please select a bread type.");
+        return;
+    }
+
+    // PRICE LOGIC
+    let price = 120;              // Base price
+    price += veggies.length * 10; // 10₹ per extra veggie
+
+    // CART OBJECT
+    let customMeal = {
+        name: `Custom ${mealTypes.join(" & ")} (${bread.value})`,
+        price: price,
+        img: "custom_meal.jpg",
+        veggies: veggies,
+        note: note
+    };
+
+    // SAVE TO CART
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(customMeal);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Your customized meal has been added to the cart! 🛒");
+});
+</script>
 
 </body>
 </html>

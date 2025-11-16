@@ -1,53 +1,159 @@
+/* =====================================================
+   MAIN CART CONTAINER
+===================================================== */
 #cart_container {
     width: 85%;
     margin: 2rem auto;
-    background: rgba(255,230,200,0.3);
+    background: rgba(255,230,200,0.4);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 0.8rem 1.2rem rgba(0,0,0,0.15);
 }
 
+/* =====================================================
+   CART ITEM ROW
+===================================================== */
 .cart_row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: white;
+    justify-content: space-between;
+    background: #fff;
     padding: 1rem;
-    border-radius: 12px;
+    border-radius: 15px;
     margin-bottom: 1rem;
-    box-shadow: 0 0.3rem 0.7rem rgba(0,0,0,0.1);
+    box-shadow: 0 0.3rem 0.7rem rgba(0,0,0,0.15);
 }
 
 .cart_row img {
-    width: 80px;
-    border-radius: 10px;
+    width: 85px;
+    height: 85px;
+    border-radius: 12px;
+    object-fit: cover;
 }
 
-.remove_btn {
-    background: red;
-    border: none;
-    padding: 8px 15px;
-    color: #fff;
+/* =====================================================
+   ITEM INFO
+===================================================== */
+.item_info {
+    flex: 1;
+    margin-left: 1rem;
+}
+
+.item_info h3 {
+    font-size: 1.2rem;
+    color: rgb(30, 10, 90);
+}
+
+.item_info .price {
+    color: rgb(150, 40, 0);
+    font-size: 1.1rem;
+}
+
+/* =====================================================
+   QUANTITY BUTTONS (+ / -)
+===================================================== */
+.quantity_box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quantity_box button {
+    width: 35px;
+    height: 35px;
     border-radius: 8px;
+    font-size: 1.3rem;
+    border: none;
+    background: rgb(19,5,90);
+    color: white;
     cursor: pointer;
 }
 
+.quantity_box span {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* =====================================================
+   REMOVE BUTTON
+===================================================== */
+.remove_btn {
+    background: rgb(200, 0, 0);
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.remove_btn:hover {
+    background: rgb(150, 0, 0);
+}
+
+/* =====================================================
+   TOTAL PRICE
+===================================================== */
 #total_box {
     text-align: center;
     margin-top: 2rem;
     font-size: 1.6rem;
+    color: rgb(30, 10, 90);
 }
 
+/* =====================================================
+   CLEAR CART BUTTON
+===================================================== */
+#clear_cart_btn {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.9rem 2rem;
+    background-color: rgb(180, 0, 0);
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#clear_cart_btn:hover {
+    background-color: rgb(120, 0, 0);
+    transform: scale(1.05);
+}
+
+/* =====================================================
+   CHECKOUT BUTTON
+===================================================== */
 #checkout_btn {
     display: block;
-    margin: 2rem auto;
+    margin: 1.5rem auto;
     padding: 1rem 2rem;
     background-color: rgb(19,5,90);
     color: white;
     border-radius: 12px;
     cursor: pointer;
-}
-#checkout_btn:hover {
-    background-color: rgb(30,10,140);
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
+#checkout_btn:hover {
+    background-color: rgb(40, 10, 140);
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+@media (max-width: 768px) {
+    .cart_row {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}
+    #checkout_btn {
+        padding: 0.7rem 1rem;
+    }
+}
+/* Mobile (1 card per row) */

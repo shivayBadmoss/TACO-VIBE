@@ -2,74 +2,173 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Makes page responsive on all screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Your Cart</title>
 
+    <!-- Base stylesheet -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Cart-specific stylesheet -->
     <link rel="stylesheet" href="cart.css">
 </head>
 
 <body>
 
+<!-- ============================================================
+                     NAVBAR SECTION
+=============================================================== -->
 <header>
     <nav>
         <div id="nav_bar">
             <div id="nav_bar_content">
-                <a id="logo" href="index.html"><img src="image.png"></a>
+
+                <!-- Website Logo -->
+                <a id="logo" href="index.html">
+                    <img src="image.png" alt="Logo">
+                </a>
+
+                <!-- Navigation -->
                 <a href="Menu.html">MENU</a>
                 <a href="Customization.html">Customize Your Meal</a>
+                <a href="contactus.html">CONTACT</a>
 
-                <!-- <a href="Payment_M.html">Payment Method</a>
-                <a href="Cod.html">COD</a>
-                <a href="OnlinePay.html">Online Pay</a> -->
-                
-                <a href="contactus.html">Contact</a>
+                <!-- Active Cart Link -->
                 <a href="cart.html">CART 🛒</a>
             </div>
         </div>
     </nav>
 </header>
 
+
+<!-- PAGE HEADING -->
 <h1 class="top_heading">Your Cart</h1>
 
-<div id="cart_container">
-    <div id="cart_items"></div>
-    <h2 id="total_box">Total: ₹<span id="total_price">0</span></h2>
 
+<!-- ============================================================
+                     CART CONTAINER
+=============================================================== -->
+<div id="cart_container">
+
+    <!-- JS will generate cart items here -->
+    <div id="cart_items"></div>
+
+    <!-- Total Price Section -->
+    <h2 id="total_box">
+        Total: ₹<span id="total_price">0</span>
+    </h2>
+
+    <!-- CLEAR CART BUTTON -->
+    <button id="clear_cart_btn" onclick="clearCart()">
+        Clear Entire Cart 🗑️
+    </button>
+
+    <!-- Checkout Button -->
     <button id="checkout_btn" onclick="location.href='Payment_M.html'">
         Proceed to Checkout
     </button>
 </div>
 
+
+<!-- ============================================================
+                     CART JAVASCRIPT
+=============================================================== -->
 <script>
+
+// Load cart from localStorage
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function loadCart() {
-    let cartDiv = document.getElementById("cart_items");
+// Save cart to localStorage
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+// Update total price
+function updateTotal() {
     let total = 0;
+    cart.forEach(item => total += item.price * item.quantity);
+    document.getElementById("total_price").innerText = total;
+}
+
+// Load cart items on page
+function loadCart() {
+
+    let cartDiv = document.getElementById("cart_items");
     cartDiv.innerHTML = "";
 
+    if (cart.length === 0) {
+        cartDiv.innerHTML = `<h3>Your cart is empty 🛒</h3>`;
+        updateTotal();
+        return;
+    }
+
     cart.forEach((item, index) => {
-        total += item.price;
+
+        if (!item.quantity) item.quantity = 1;
+
         cartDiv.innerHTML += `
             <div class="cart_row">
-                <img src="${item.img}">
-                <p><b>${item.name}</b></p>
-                <p>₹${item.price}</p>
+
+                <img src="${item.img}" alt="meal">
+
+                <div class="item_info">
+                    <h3>${item.name}</h3>
+                    <p class="price">₹${item.price}</p>
+                </div>
+
+                <div class="quantity_box">
+                    <button onclick="decreaseQty(${index})">−</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="increaseQty(${index})">+</button>
+                </div>
+
                 <button class="remove_btn" onclick="removeItem(${index})">Remove</button>
             </div>
         `;
     });
 
-    document.getElementById("total_price").innerText = total;
+    updateTotal();
 }
 
-function removeItem(index) {
-    cart.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(cart));
+
+// Increase quantity
+function increaseQty(index) {
+    cart[index].quantity++;
+    saveCart();
     loadCart();
 }
 
+// Decrease quantity
+function decreaseQty(index) {
+    if (cart[index].quantity > 1) {
+        cart[index].quantity--;
+    }
+    saveCart();
+    loadCart();
+}
+
+// Remove single item
+function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    loadCart();
+}
+
+// CLEAR ENTIRE CART
+function clearCart() {
+
+    let confirmDelete = confirm("Are you sure you want to CLEAR the entire cart? This cannot be undone!");
+
+    if (!confirmDelete) return;
+
+    cart = [];  
+    localStorage.removeItem("cart");
+    loadCart();
+}
+
+// Load cart immediately when page opens
 loadCart();
 </script>
 
