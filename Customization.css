@@ -102,6 +102,31 @@ textarea {
 }
 
 /* =========================
+   Add to cart BUTTON
+========================= */
+#add_to_cart_btn {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#add_to_cart_btn  {
+    background-color: rgb(19, 5, 90);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#add_to_cart_btn:hover {
+    background-color: rgb(38, 12, 120);
+}
+
+
+/* =========================
    RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
