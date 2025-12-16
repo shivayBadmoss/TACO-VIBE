@@ -5,10 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rev's Payment Page</title>
     <link rel="stylesheet" href="payment.css">
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseClient = supabase.createClient(
+            "https://kowghadptgwjnnhoauaz.supabase.co",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtvd2doYWRwdGd3am5uaG9hdXoiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTczMjYwMDM2MywiZXhwIjoxNzY0MTM2MzYzfQ.J2_JIUT4Fqv8ZRM2xNjeV9HeLJXCRtVbP-0vVJ3Ukjg"
+        );
+    </script>
 </head>
 <body>
 
-    <!--  HEADER -->
+    <!-- HEADER -->
     <header>
         <nav id="nav_bar">
             <div id="nav_bar_content">
@@ -16,45 +25,37 @@
                 <a href="Menu.html">MENU</a>
                 <a href="Customization.html">Customize Your Meal</a>
                 <a href="Payment_M.html" class="active">Payment Method</a>
-
-                <!-- <a href="Cod.html">COD</a>
-                <a href="OnlinePay.html">Online Pay</a> -->
-                
                 <a href="contactus.html">Contact Us</a>
             </div>
         </nav>
     </header>
-    
-        <!--~~~~~~~~~~~~~~~~ PRsnl Detail FORM  ~~~~~~~~~~~~~~~~~~~~~~~~-->
-<form>
 
-        <section id="menu" style="margin: 2rem auto; max-width: 600px;">
-            <div class="menu_heading">Fill in Your Details</div>
-            <div style="background-color: rgba(255, 230, 200, 0.2); padding: 2rem; border-radius: 15px; box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.1);">
-                <form id="cod_form" onsubmit="showConfirmation(event)">
+    <!-- PERSONAL DETAILS SECTION -->
+    <section id="menu" style="margin: 2rem auto; max-width: 600px;">
+        <div class="menu_heading">Fill in Your Details</div>
 
-                    <label for="name">Full Name:</label><br>
-                   <input type="text" id="name" name="name" placeholder="Your Full Name" required style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 5px; border: 1px solid black;"><br>  <!-- this required will give pop up until the fei;d is not filled -->
+        <div style="background-color: rgba(255,230,200,0.2); padding: 2rem; border-radius: 15px; box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.1);">
 
-                    <label for="phone">Phone Number:</label><br>
-                    <input type="tel" id="phone" name="phone" placeholder="+91 9616020074" required style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 5px; border: 1px solid black;"><br>
+            <form id="customer_form" onsubmit="saveCustomer(event)">
 
-                    <label for="Email">Email Address:</label><br>
-                    <input type="text" id="Email Address" name="Email Address" placeholder="Enter Your Eamil Address" required style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 5px; border: 1px solid black;"><br>
+                <label for="name">Full Name:</label><br>
+                <input type="text" id="name" name="name" placeholder="Your Full Name" required><br>
 
-                    <label for="notes">Special Notes (Optional):</label><br>
-                    <textarea id="notes" name="notes" rows="4" placeholder="Extra napkins, sauce preferences..." style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 5px; border: 1px solid black;"></textarea><br>
+                <label for="phone">Phone Number:</label><br>
+                <input type="tel" id="phone" name="phone" placeholder="+91 9616020074" required><br>
 
-                    <button type="submit" id="submit" style="font-size: 1rem; padding: 0.8rem 1.5rem; border-radius: 15px; border: none; color: white; background-color: rgb(19,5,90); cursor: pointer; transition: 0.3s;" required>SUBMIT </button>
-                </form>
-            </div>
-        </section>
+                <label for="email">Email Address:</label><br>
+                <input type="email" id="email" name="email" placeholder="Enter Your Email" required><br>
 
+                <label for="notes">Special Notes (Optional):</label><br>
+                <textarea id="notes" name="notes" rows="4" placeholder="Extra napkins, sauce preferences..."></textarea><br>
 
+                <button type="submit" id="submit">SUBMIT</button>
+            </form>
+        </div>
+    </section>
 
-    <!--  PAYMENT SECTION -->
-
-
+    <!-- PAYMENT SECTION -->
     <main id="payment_section">
         <div id="payment_box">
             <h3 id="payment_title" style="font-size:xx-large">Choose a Payment Method</h3>
@@ -66,10 +67,7 @@
         </div>
     </main>
 
-
-</form>
-
-    <!--  FOOTER -->
+    <!-- FOOTER -->
     <footer id="payment_footer">
         <button id="mainpage_btn" onclick="location.href='index.html'">Go To Main Page</button>
     </footer>
@@ -98,14 +96,29 @@
 
 </body>
 
-        <!-- ~~~~~~~~~~~~~~ CONFIRMATION MESSAGE ~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!-- SAVE CUSTOMER TO SUPABASE -->
+<script>
+async function saveCustomer(event) {
+    event.preventDefault();
 
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const notes = document.getElementById("notes").value.trim();
 
-        <script>
-        function showConfirmation(event) {
-            event.preventDefault();
-            alert("Thank You for sharing your personal Details !!");
-        }
-    </script>
+    const { data, error } = await supabaseClient
+        .from("customers")
+        .insert([{ name, phone, email, notes }]);
+
+    if (error) {
+        console.error(error);
+        alert("❌ Failed to save details");
+        return;
+    }
+
+    alert("✅ Details Saved Successfully!");
+    document.getElementById("customer_form").reset();
+}
+</script>
 
 </html>

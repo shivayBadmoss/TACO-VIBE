@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COD - Rev's Tacoshop</title>
+    <title>Cash On Delivery - Rev's Tacoshop</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabase = supabase.createClient(
+            "https://kowghadptgwjnnhoauaz.supabase.co",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtvd2doYWRwdGd3am5uaG9hdXoiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTczMjYwMDM2MywiZXhwIjoxNzY0MTM2MzYzfQ.J2_JIUT4Fqv8ZRM2xNjeV9HeLJXCRtVbP-0vVJ3Ukjg"
+        );
+    </script>
 </head>
+
 <body>
 
-    <!--~~~~~~~~~~~~~~~  NAV BAR  ~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-    
+    <!-- NAV BAR -->
     <header>
         <nav>
             <div id="nav_bar">
@@ -17,73 +26,60 @@
                     <a id="logo" href="index.html"><img src="image.png" alt="Rev's Tacoshop Logo"></a>
                     <a href="Menu.html">MENU</a>
                     <a href="Customization.html">Customize Your Meal</a>
-
-                    <!-- <a href="Payment_M.html">Payment Method</a> -->
-
-                    <a href="Cod.html">COD</a>
-
-                    <!-- <a href="OnlinePay.html">ONLINE PAY</a> -->
-                     
+                    <a href="Cod.html" class="active">COD</a>
                     <a href="contactus.html">CONTACT US</a>
-
-                    <!-- Search -->
-                    <!-- <form id="form1" action="action.php" method="get">
-                        <input id="search_bar" type="text" placeholder="Search...">
-                        <button id="search_button" type="button" onclick="alert('Search clicked!')">Search</button>
-                    </form> -->
                 </div>
             </div>
         </nav>
     </header>
 
-    <!--~~~~~~~~~~~~~~~~~  PAGE HEADING  ~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-   
+    <!-- PAGE HEADING -->
     <main>
         <h1 class="top_heading"><b>Cash On Delivery (COD)</b></h1>
         <h3 id="second_heading">Pay Only When Your Tacos Arrive!</h3>
 
-
-        <!--~~~~~~~~~~~~~~~~~~~~~  COD FORM  ~~~~~~~~~~~~~~~~~~~~~~~~-->
-
-
+        <!-- COD FORM -->
         <section id="menu" style="margin: 2rem auto; max-width: 600px;">
-            <div class="menu_heading">Fill Your Adress Details</div>
-            <div style="background-color: rgba(255, 230, 200, 0.2); padding: 2rem; border-radius: 15px; box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.1);">
+            <div class="menu_heading">Fill Your Address Details</div>
+
+            <div style="
+                background-color: rgba(255,230,200,0.2);
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.1);
+            ">
                 <form id="cod_form" onsubmit="showConfirmation(event)">
 
-                    <label for="House No">House No</label><br>
-                   <input type="text" id="name" name="House No" placeholder="Your House Number" required style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 5px; border: 1px solid black;"><br>  <!-- this required will give pop up until the fei;d is not filled -->
+                    <label>House No</label>
+                    <input type="text" id="houseNo" placeholder="Your House Number" required>
 
-                    <label for="Locality">Locality</label><br>
-                    <input type="text" id="Locality" name="Locality" placeholder="Your Locality Name " required style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 5px; border: 1px solid black;"><br>
-                    
-                    <label for="Street">Street Number or Name:</label><br>
-                    <input type="text" id="Street" name="Street" placeholder="Street No. 07, Street Name. Ghantaghar" required style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 5px; border: 1px solid black;"><br>
+                    <label>Locality</label>
+                    <input type="text" id="locality" placeholder="Your Locality Name" required>
 
-                    <label for="City">City And State</label><br>
-                    <textarea id="City" name="City" rows="4" placeholder="Shahjahanpur, Uttar Pradesh " required style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 5px; border: 1px solid black;"></textarea><br>
+                    <label>Street Number or Name</label>
+                    <input type="text" id="street" placeholder="Street No. 07, Street Name" required>
 
-                    <label for="notes">Special Notes (Optional):</label><br>
-                    <textarea id="notes" name="notes" rows="2" placeholder="Extra napkins, sauce preferences..." style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 5px; border: 1px solid black;"></textarea><br>
+                    <label>City and State</label>
+                    <textarea id="city" rows="3" placeholder="Shahjahanpur, Uttar Pradesh" required></textarea>
 
-                    <button type="submit" style="font-size: 1rem; padding: 0.8rem 1.5rem; border-radius: 15px; border: none; color: white; background-color: rgb(19,5,90); cursor: pointer; transition: 0.3s;">Place Order</button>
+                    <label>Special Notes (Optional)</label>
+                    <textarea id="notes" rows="2" placeholder="Extra napkins, sauce preferences..."></textarea>
+
+                    <button type="submit" class="btn-main">Place Order</button>
                 </form>
             </div>
         </section>
 
-
-        <!-- ~~~~~~~~~~~~~~ CONFIRMATION MESSAGE ~~~~~~~~~~~~~~~~~~~~~~~~-->
-
-
+        <!-- FOOTER TEXT -->
         <section style="text-align: center; margin-top: 3rem;">
-            <p id="para_1">Your order will be confirmed and delivered to your address. Please keep cash ready for payment.</p>
+            <p id="para_1">
+                Your order will be confirmed and delivered to your address.  
+                Please keep cash ready for payment.
+            </p>
         </section>
     </main>
 
-    
-    <!--  ~~~~~~~~~~~~~~~  FOOTER ~~~~~~~~~~~~~~~~~~~~~~~~~-->
-   
-   
+    <!-- FOOTER -->
     <footer>
         <section id="footer">
             <div id="links">
@@ -96,19 +92,22 @@
                 <a href="#">CONTACT US</a>
                 <a href="#">TERM & CONDITIONS</a>
             </div>
-            <div id="copyright">
+
                 <div id="pic">
-                    <a href="#"><img src="image.png" alt="pic"></a>
+                    <a href="#"><img src="image.png" alt="Rev's TacoShop"></a>
                     <h6>©2025 Rev's Taco Shop IP Holder, LLC. All Rights Reserved.</h6>
                 </div>
             </div>
         </section>
     </footer>
+
 </body>
-</html>
+
 <script>
-        function showConfirmation(event) {
-            event.preventDefault();
-            alert("Thanks! Your order has been placed successfully!");
-        }
-    </script>
+function showConfirmation(event) {
+    event.preventDefault();
+    alert("Thanks! Your order has been placed successfully!");
+}
+</script>
+
+</html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Rev's Tacoshop</title>
     <link rel="stylesheet" href="styles.css">
+
     <style>
         /* =========================
            CONTACT US PAGE STYLES
@@ -56,7 +57,8 @@
         }
 
         /* Feedback form */
-        #feedback_form input, #feedback_form textarea {
+        #feedback_form input,
+        #feedback_form textarea {
             width: 100%;
             padding: 1rem;
             font-size: 1.1rem;
@@ -80,22 +82,17 @@
         #feedback_form button:hover {
             background-color: rgb(38,12,120);
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            #contact_section {
-                padding: 2rem 1rem;
-            }
-
-            .contact_heading {
-                font-size: 2rem;
-            }
-
-            .contact_subheading {
-                font-size: 1.3rem;
-            }
-        }
     </style>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabase = supabase.createClient(
+            "https://kowghadptgwjnnhoauaz.supabase.co",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtvd2doYWRwdGd3am5uaG9hdXoiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTczMjYwMDM2MywiZXhwIjoxNzY0MTM2MzYzfQ.J2_JIUT4Fqv8ZRM2xNjeV9HeLJXCRtVbP-0vVJ3Ukjg"
+        );
+    </script>
+
 </head>
 <body>
     <header>
@@ -105,15 +102,8 @@
                     <a id="logo" href="index.html"><img src="image.png" alt="Rev's Tacoshop Logo"></a>
                     <a href="Menu.html">MENU</a>
                     <a href="Customization.html">Customize Your Meal</a>
-                 
-                    <!-- <a href="Payment_M.html">Payment Method</a>
-                    <a href="Cod.html">COD</a>
-                    <a href="OnlinePay.html">ONLINE PAY</a> -->
-                    
                     <a href="contactus.html">CONTACT US</a>
-                    <a href="Cart.html">CART </a>
-
-
+                    <a href="Cart.html">CART</a>
                 </div>
             </div>
         </nav>
@@ -138,23 +128,20 @@
             <!-- Google Map -->
             <div class="contact_info">
                 <h4>Find Us Here</h4>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.800565231693!2d78.03995331504302!3d27.175144983006836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397470ddea9736df%3A0x74f573f0b0d511a9!2sTaj%20Mahal!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                width="100%" 
-                height="450" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.800565231693!2d78.03995331504302!3d27.175144983006836!"
+                    loading="lazy">
+                </iframe>
             </div>
 
             <!-- Feedback Form -->
             <div class="feedback_form">
                 <h4>Send Us Your Feedback</h4>
+
                 <form id="feedback_form" onsubmit="submitFeedback(event)">
-                    <input type="text" name="name" placeholder="Full Name" required>
-                    <input type="email" name="email" placeholder="Email Address" required>
-                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <input id="name" type="text" name="name" placeholder="Full Name" required>
+                    <input id="email" type="email" name="email" placeholder="Email Address" required>
+                    <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                     <button type="submit">Submit Feedback</button>
                 </form>
             </div>
@@ -173,6 +160,7 @@
                 <a href="#">CONTACT US</a>
                 <a href="#">TERM & CONDITIONS</a>
             </div>
+
             <div id="copyright">
                 <div id="pic">
                     <a href="#"><img src="image.png" alt="pic"></a>
@@ -182,12 +170,34 @@
         </section>
     </footer>
 
+    <!-- Working Submit Script -->
     <script>
-        function submitFeedback(event) {
+        async function submitFeedback(event) {
             event.preventDefault();
-            alert(" Thank you for your valuable feedback! We appreciate it the most.");
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (!name || !email || !message) {
+                alert("Please fill all fields!");
+                return;
+            }
+
+            const { data, error } = await supabase
+                .from("messages")
+                .insert([{ name, email, message }]);
+
+            if (error) {
+                console.error(error);
+                alert("❌ Failed to send feedback!");
+                return;
+            }
+
+            alert("✅ Thank you for your valuable feedback!");
             document.getElementById("feedback_form").reset();
         }
     </script>
+
 </body>
 </html>
